@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đăng ký tài khoản mới</title>
+  <style>
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f1f1f1;
+      background-image: url("dangnhap.jpg");
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h1 {
+      text-align: center;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: blueviolet;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .container input[type="submit"]:hover {
+      background-color: blueviolet;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    function KiemTra() {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var phoneNumber = document.getElementById('phoneNumber').value;
+
+      var emailError = document.getElementById('emailError');
+      var passwordError = document.getElementById('passwordError');
+      var confirmPasswordError = document.getElementById('confirmPasswordError');
+      var phoneNumberError = document.getElementById('phoneNumberError');
+
+      emailError.innerHTML = '';
+      passwordError.innerHTML = '';
+      confirmPasswordError.innerHTML = '';
+      phoneNumberError.innerHTML = '';
+
+      var isValid = true;
+
+      if (email === '') {
+        emailError.innerHTML = 'Vui lòng nhập email!';
+        isValid = false;
+      } else if (email.length <= 10 || !validateEmail(email)) {
+        emailError.innerHTML = 'Email không hợp lệ!';
+        isValid = false;
+      }
+
+      if (password === '') {
+        passwordError.innerHTML = 'Vui lòng nhập mật khẩu!';
+        isValid = false;
+      } else if (password.length <= 10) {
+        passwordError.innerHTML = 'Mật khẩu phải có ít nhất 10 ký tự!';
+        isValid = false;
+      }
+
+      if (confirmPassword === '') {
+        confirmPasswordError.innerHTML = 'Vui lòng nhập lại mật khẩu!';
+        isValid = false;
+      } else if (confirmPassword !== password) {
+        confirmPasswordError.innerHTML = 'Mật khẩu không khớp!';
+        isValid = false;
+      }
+
+      if (phoneNumber === '') {
+        phoneNumberError.innerHTML = 'Vui lòng nhập số điện thoại!';
+        isValid = false;
+      } else if (phoneNumber.length == 10) {
+        phoneNumberError.innerHTML = 'Số điện thoại phải có đúng 10 ký tự!';
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert('Đăng ký tài khoản thành công!');
+        // Chuyển đến trang khác
+        window.location.href = 'đăng ký.html';
+      }
+    }
+
+    function validateEmail(email) {
+      var re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Đăng ký tài khoản mới</h1>
+    <form>
+      <input type="text" id="email" name="email" placeholder="Email">
+      <div id="emailError" class="error"></div>
+
+      <input type="password" id="password" name="password" placeholder="Mật khẩu">
+      <div id="passwordError" class="error"></div>
+
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu">
+      <div id="confirmPasswordError" class="error"></div>
+
+      <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Số điện thoại">
+      <div id="phoneNumberError" class="error"></div>
+
+      <input type="submit" value="Đăng ký" onclick="KiemTra()">
+    </form>
+  </div>
+</body>
+</html>

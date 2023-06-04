@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Đăng nhập và Đăng ký</title>
+  <style>
+    body {
+      background-image: url("dangnhapp.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .login-form {
+      width: 350px;
+      background-color: white;
+      border-radius: 10px;
+      margin: 0 auto;
+      padding: 20px;
+      margin-top: 50px;
+    }
+    
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      background-color: blueviolet;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .login-form button:hover {
+      background-color: blueviolet;
+    }
+    
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+    
+    .signup-link {
+      margin-top: 15px;
+      text-align: left;image.png
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-form">
+  <h1 style="color: blue;">Đăng nhập</h1>
+  <form>
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Mật khẩu">
+    <button type="button" onclick="KiemTra()">Đăng nhập</button>
+  </form>
+  <div id="error" class="error-message"></div>
+  <div class="signup-link">
+    <a href="đăng ký 1.html">Đăng ký tài khoản mới</a>
+  </div>
+</div>
+
+<script>
+  function KiemTra() {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var errorElement = document.getElementById("error");
+    errorElement.innerHTML = "";
+    
+    // Kiểm tra điều kiện
+    if (email === "") {
+      errorElement.innerHTML = "Vui lòng nhập email";
+      return;
+    }
+    
+    if (email.length <= 10 || !validateEmail(email)) {
+      errorElement.innerHTML = "Email không hợp lệ";
+      return;
+    }
+    
+    if (password === "") {
+      errorElement.innerHTML = "Vui lòng nhập mật khẩu";
+      return;
+    }
+    
+    if (password.length <= 10) {
+      errorElement.innerHTML = "Mật khẩu phải có ít nhất 10 ký tự";
+      return;
+    }
+    
+    // Nếu điều kiện đúng, chuyển hướng sang trang Bai5b.html
+    window.location.href = "Bai5b.html";
+  }
+  
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+</script>
+
+</body>
+</html>
